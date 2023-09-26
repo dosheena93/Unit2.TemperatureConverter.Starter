@@ -5,8 +5,10 @@
  * @param {string} fahren temperature in degrees F
  * @returns {number} the number of degrees C
  */
-function convertToCelsius(fahren) {}
-
+function convertToCelsius(fahrenheit) {
+const celsius = (fahrenheit - 32) * 5/9;
+  return celsius;
+}
 /**
  * Takes both numbers (F, C) and display a message with
  * both numbers and how that temp makes you feel using
@@ -22,14 +24,43 @@ function convertToCelsius(fahren) {}
  * @param {number} fahren
  * @param {number} celc
  */
-function createMessage(fahren, celc) {}
+function createMessage(fahrenheit, celsius) {
+  let message;
+  if (fahrenheit < 32) {
+    message = `${fahrenheit} degrees Fahrenheit (${celsius.toFixed(2)} degrees Celsius) feels very cold.`;
+  } else if (fahrenheit < 64) {
+    message = `${fahrenheit} degrees Fahrenheit (${celsius.toFixed(2)} degrees Celsius) feels cold.`;
+  } else if (fahrenheit < 86) {
+    message = `${fahrenheit} degrees Fahrenheit (${celsius.toFixed(2)} degrees Celsius) feels warm.`;
+  } else {
+    message = `${fahrenheit} degrees Fahrenheit (${celsius.toFixed(2)} degrees Celsius) feels hot.`;
+  }
+  return message;
+}
+
+
+function convertAndDisplay() {
+  const fahrenheitInput = document.getElementById("fahrenheitInput");
+  const resultElement = document.getElementById("result");
+
+  const fahrenheit = parseFloat(fahrenheitInput.value);
+  if (!isNaN(fahrenheit)) {
+    const celsius = convertToCelsius(fahrenheit);
+    const message = createMessage(fahrenheit, celsius);
+    resultElement.textContent = message;
+  } else {
+    resultElement.textContent = "Please enter a valid number.";
+  }
+}
 
 /**
  * Takes a number and returns a random integer from 0 to the limit
  * @param {number} limit
  * @returns {number} a number between 0 and the int passed in
  */
-function rand(limit) {}
+function rand(limit) {
+  return Math.floor(Math.random() * (limit + 1));
+}
 
 // -------------------- DONT NOT CHANGE THE CODE BELOW ---------------------- //
 
